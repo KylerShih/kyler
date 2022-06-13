@@ -8,12 +8,11 @@ import java.util.Scanner;
 public class Restaurant{
     private double profit;
     private String name;
-    private ArrayList<Restaurant> restaurantsArrayList;
+
 
 
     public Restaurant(String name){
         this.name = name;
-        restaurantsArrayList = new ArrayList<Restaurant>();
     }
 
     public String getName() {

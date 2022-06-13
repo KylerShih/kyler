@@ -20,7 +20,6 @@ public class RestaurantData {
             System.out.println("(p) to print all previous restaurants");
             System.out.println("(s) to serve a table");
             System.out.println("(o) to open a restaurant");
-            System.out.println("(m) to print total profit made");
             Scanner s = new Scanner(System.in);
             String c = "";
             c = s.nextLine();
@@ -99,11 +98,21 @@ public class RestaurantData {
 
             restaurantsArrayList.get(num).setProfit(restaurantsArrayList.get(num).getProfit() + 10);
             System.out.println("Table Served");
-        }
-        if(choice.equals("m")){
-            for(int i = 0;i<restaurantsArrayList.size();i++){
-                System.out.println(restaurantsArrayList.get(i).getProfit());
+            try {
+                File f = new File("src/restaurants.data");
+                f.createNewFile();
+                FileWriter fw = new FileWriter("src/restaurants.data");
+                String data = "";
+                for (int i = 0; i < restaurantsArrayList.size(); i++) {
+                    data = restaurantsArrayList.get(i).getName() + "|" + restaurantsArrayList.get(i).getProfit();
+                    fw.write(data + "\n");
+                }
+                fw.close();
+            } catch (IOException e) {
+                System.out.println("Unable to create file");
+                e.printStackTrace();
             }
+
         }
     }
     public void loadRestaurants(){
